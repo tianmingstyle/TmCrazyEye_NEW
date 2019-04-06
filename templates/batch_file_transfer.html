@@ -1,0 +1,53 @@
+{% extends 'batch_cmd.html' %}
+
+{% block performanceresult %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">批量上传或者下载</h3>
+          </div>
+          <div class="panel-body">
+{#              上传或者下载方式选择#}
+              <div class="form-group">
+                   <select id="file_transfer_type" onchange="select_tranfer_type(this)">
+                      <option value ="Send">上传</option>
+                      <option value ="Get">下载</option>
+                   </select>
+              </div>
+
+              <div class="form-group">
+
+                <input type="email" class="form-control" id="remote_path" placeholder="远程路径">
+              </div>
+
+               <div class="form-group">
+
+                <input type="email" class="form-control" id="local_path" placeholder="本地路径">
+              </div>
+              <button type="button" id="runcmd" class="btn btn-success" onclick="PostData(this,'file_transfer')" style="float: right;">执行命令
+                </button>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">结果</h3>
+                  </div>
+                  <div class="panel-body">
+                     <div id="task_result">
+                    {#                  here is cmd result!#}
+
+                </div>
+                  </div>
+                </div>
+
+
+    <script>
+        function select_tranfer_type(ths){
+            if($(ths).val() == "Get"){
+                $("#local_path").addClass("hidden");
+            }else{
+                $("#local_path").removeClass("hidden");
+            }
+        }
+    </script>
+{% endblock %}
